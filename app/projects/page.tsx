@@ -24,7 +24,7 @@ export default function ProjectsPage() {
           <Link
             key={project.slug}
             href={`/projects/${project.slug}`}
-            className="group relative bg-gray-900/30 border border-gray-800/50 rounded-lg p-6 hover:bg-gray-900/50 hover:border-accent-gold/60 hover:shadow-xl hover:shadow-accent-gold/10 hover:-translate-y-1 transition-all duration-250 ease-out"
+            className="group relative bg-[#141416] border border-gray-800/50 rounded-lg p-6 hover:bg-[#141416]/90 hover:border-accent-gold/60 hover:shadow-xl hover:shadow-accent-gold/10 hover:-translate-y-1 transition-all duration-250 ease-out"
           >
             {project.thumbnail && (
               <div className="relative w-full aspect-[16/9] overflow-hidden rounded-xl mb-4">
@@ -63,7 +63,7 @@ export default function ProjectsPage() {
                 {project.stack.map((tech) => (
                   <span
                     key={tech}
-                    className="text-xs bg-gray-800/60 border border-gray-700/50 text-text-secondary px-2 py-1 rounded-full"
+                    className="text-xs bg-[#0d0e10] border border-gray-700/50 text-text-secondary px-2 py-1 rounded-full"
                   >
                     {tech}
                   </span>

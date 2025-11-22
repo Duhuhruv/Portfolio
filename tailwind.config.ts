@@ -11,8 +11,8 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        // Premium Purdue color system
-        "bg-primary": "#1A1B22",
+        // Premium Purdue color system - lighter charcoal for comfortable viewing
+        "bg-primary": "#1a1d24",
         "text-primary": "#F4F4F4",
         "text-secondary": "#BEBBB0",
         "accent-gold": "#C7B77A",

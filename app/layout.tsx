@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-bg-primary text-text-primary">
+      <body className="min-h-screen flex flex-col bg-[#1D1B24] text-text-primary">
         <GlowBackground>
           <Navbar />
           <main className="flex-grow">{children}</main>
