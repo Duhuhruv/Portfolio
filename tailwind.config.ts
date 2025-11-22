@@ -23,6 +23,15 @@ const config: Config = {
         "purdue-sand": "#EDE6D4",
         "purdue-black": "#1A1B22",
       },
+      keyframes: {
+        'scroll-cue': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(4px)' }
+        }
+      },
+      animation: {
+        'scroll-cue': 'scroll-cue 1.6s ease-in-out infinite'
+      }
     },
   },
   plugins: [],

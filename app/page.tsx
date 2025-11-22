@@ -26,30 +26,30 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section id="about" className="w-full py-20 md:py-28 lg:py-32 relative overflow-hidden" style={{
+      <section id="about" className="w-full relative overflow-hidden min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] flex items-center py-16 md:py-20" style={{
         background: 'radial-gradient(ellipse at 30% 20%, rgba(200, 175, 110, 0.22) 0%, rgba(160, 140, 95, 0.15) 20%, rgba(100, 90, 65, 0.08) 35%, rgba(29, 27, 36, 0.4) 50%, rgba(29, 27, 36, 0.6) 70%, rgba(29, 27, 36, 0.3) 85%, transparent 100%)',
       }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 lg:gap-16">
             {/* Left: Hero Content Container with Accent Line */}
-            <div className="max-w-3xl mx-auto md:mx-0 relative opacity-0 animate-fade-slide-up" style={{animation: 'fadeSlideUp 0.8s ease-out forwards'}}>
+            <div className="max-w-3xl lg:max-w-4xl mx-auto md:mx-0 relative opacity-0 animate-fade-slide-up" style={{animation: 'fadeSlideUp 0.8s ease-out forwards'}}>
               {/* Vertical Accent Line with Glow */}
               <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-purdue-gold via-purdue-gold to-purdue-gold/40 shadow-[0_0_12px_rgba(200,175,110,0.5)] hidden md:block"></div>
 
               {/* Content with left padding for accent line */}
               <div className="md:pl-8">
               {/* Name */}
-              <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight leading-tight text-text-primary text-center md:text-left">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight leading-tight text-text-primary text-center md:text-left">
                 {about.name}
               </h1>
 
               {/* Role */}
-              <h2 className="text-xl md:text-2xl font-semibold mb-6 tracking-tight text-accent-gold text-center md:text-left">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-6 tracking-tight text-accent-gold text-center md:text-left">
                 Embedded & Software Engineer
               </h2>
 
               {/* Concise Summary */}
-              <p className="text-base md:text-lg text-gray-300 leading-relaxed mb-8 text-center md:text-left">
+              <p className="text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed mb-8 text-center md:text-left">
                 Purdue Computer Engineer building end-to-end systems across embedded devices, RF communication, firmware, and modern cloud software. I've built real-time imaging systems with FreeRTOS, cloud-connected tools in React and AWS, and supported Boeing Defense programs at SeaTec.
               </p>
 
@@ -124,39 +124,55 @@ export default function Home() {
           </div>
 
           {/* Right: Vertical Scroll Navigation */}
-          <div className="hidden md:flex flex-col justify-center items-end min-w-[140px] pr-6 opacity-0 animate-fade-in-delay-1">
-            <div className="relative flex flex-col gap-12">
+          <div className="hidden md:flex flex-col justify-center items-end min-w-[160px] lg:min-w-[180px] pr-4 lg:pr-8 opacity-0 animate-fade-in-delay-1 scale-105 lg:scale-110">
+            <div className="relative flex flex-col gap-10 lg:gap-12">
               {/* Vertical connecting line */}
-              <div className="absolute left-[13px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-accent-gold/30 via-accent-gold/60 to-accent-gold/30"></div>
+              <div className="absolute left-[14px] lg:left-[16px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-accent-gold/30 via-accent-gold/60 to-accent-gold/30"></div>
 
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="relative flex items-center gap-4 group cursor-pointer"
+                  className="relative flex items-center gap-4 lg:gap-5 group cursor-pointer"
                 >
                   {/* Number Circle */}
-                  <div className="relative z-10 w-7 h-7 rounded-full border-2 flex items-center justify-center font-mono text-xs tracking-widest transition-all duration-300 border-gray-600/80 bg-[#1D1B24] text-gray-500 group-hover:border-accent-gold group-hover:bg-accent-gold/20 group-hover:text-accent-gold group-hover:shadow-[0_0_16px_rgba(199,183,122,0.6)]">
+                  <div className="relative z-10 w-8 h-8 lg:w-9 lg:h-9 rounded-full border-2 flex items-center justify-center font-mono text-xs lg:text-sm tracking-widest transition-all duration-300 border-gray-600/80 bg-[#1D1B24] text-gray-500 group-hover:border-accent-gold group-hover:bg-accent-gold/20 group-hover:text-accent-gold group-hover:shadow-[0_0_16px_rgba(199,183,122,0.6)]">
                     {item.number}
                   </div>
 
                   {/* Label */}
-                  <span className="text-sm font-medium tracking-wide transition-all duration-300 text-gray-500 group-hover:text-accent-gold">
+                  <span className="text-sm lg:text-base font-medium tracking-wide transition-all duration-300 text-gray-500 group-hover:text-accent-gold">
                     {item.label}
                   </span>
 
                   {/* Hover indicator glow */}
-                  <div className="absolute left-[13px] top-1/2 -translate-y-1/2 w-[1px] h-8 bg-gradient-to-b from-transparent via-accent-gold to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
+                  <div className="absolute left-[14px] lg:left-[16px] top-1/2 -translate-y-1/2 w-[1px] h-8 bg-gradient-to-b from-transparent via-accent-gold to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
                 </button>
               ))}
             </div>
           </div>
           </div>
         </div>
+
+        {/* Subtle bottom fade for smooth transition */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#1D1B24]"></div>
+
+        {/* Scroll down cue */}
+        <button
+          onClick={() => scrollToSection("experience")}
+          className="group absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center z-10"
+          aria-label="Scroll to experience section"
+        >
+          <span className="h-9 w-9 flex items-center justify-center rounded-full border border-white/10 bg-black/20 backdrop-blur-sm text-gray-400 shadow-[0_0_12px_rgba(199,183,122,0.25)] group-hover:text-accent-gold group-hover:border-accent-gold/50 transition-colors duration-300">
+            <svg className="h-3 w-3 animate-scroll-cue" viewBox="0 0 24 24" fill="none">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+          </span>
+        </button>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="w-full py-8 sm:py-10 md:py-12 scroll-mt-20 animate-fade-in">
+      <section id="experience" className="w-full mt-16 md:mt-24 lg:mt-32 py-8 sm:py-10 md:py-12 scroll-mt-20 animate-fade-in">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4 text-text-primary">Experience</h2>
