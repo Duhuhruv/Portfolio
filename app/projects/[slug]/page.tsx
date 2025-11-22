@@ -78,7 +78,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   const isDrqProject = project.slug === "drq-snake-reinforcement-learning" ||
                        project.title?.toLowerCase().includes("drq");
 
-  const getDrqComparisonImages = () => {
+  const getDrqComparisonImages = (): Extract<ProjectContentBlock, { type: "image" }>[] | null => {
     if (!isDrqProject || !project.contentBlocks) return null;
 
     const comparisonImages = project.contentBlocks.filter(block => {
@@ -89,7 +89,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
              searchText.includes("baseline") ||
              searchText.includes("training") ||
              searchText.includes("curve");
-    });
+    }) as Extract<ProjectContentBlock, { type: "image" }>[];
 
     return comparisonImages.length === 2 ? comparisonImages : null;
   };
@@ -122,14 +122,16 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       }
       // Image block
       else if (block.type === "image") {
+        const imageBlock = block as Extract<ProjectContentBlock, { type: "image" }>;
+
         // Skip if this image is the same as the hero thumbnail
-        if (project.thumbnail && block.src === project.thumbnail) {
+        if (project.thumbnail && imageBlock.src === project.thumbnail) {
           i++;
           continue;
         }
 
         // Skip if this is a DrQ comparison image (rendered separately)
-        if (drqComparisonImages && drqComparisonImages.some(img => img.src === block.src)) {
+        if (drqComparisonImages && drqComparisonImages.some(img => img.src === imageBlock.src)) {
           i++;
           continue;
         }
@@ -138,13 +140,14 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         const consecutiveImages = [block];
         let j = i + 1;
         while (j < blocks.length && blocks[j].type === "image") {
+          const nextBlock = blocks[j] as Extract<ProjectContentBlock, { type: "image" }>;
           // Skip duplicates of thumbnail
-          if (project.thumbnail && blocks[j].src === project.thumbnail) {
+          if (project.thumbnail && nextBlock.src === project.thumbnail) {
             j++;
             continue;
           }
           // Skip DrQ comparison images
-          if (drqComparisonImages && drqComparisonImages.some(img => img.src === blocks[j].src)) {
+          if (drqComparisonImages && drqComparisonImages.some(img => img.src === nextBlock.src)) {
             j++;
             continue;
           }
