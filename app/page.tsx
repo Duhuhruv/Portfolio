@@ -127,7 +127,7 @@ export default function Home() {
           <div className="hidden md:flex flex-col justify-center items-end min-w-[160px] lg:min-w-[180px] pr-4 lg:pr-8 opacity-0 animate-fade-in-delay-1 scale-105 lg:scale-110">
             <div className="relative flex flex-col gap-10 lg:gap-12">
               {/* Vertical connecting line */}
-              <div className="absolute left-[14px] lg:left-[16px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-accent-gold/30 via-accent-gold/60 to-accent-gold/30"></div>
+              <div className="absolute left-[14px] lg:left-[16px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-gray-600/30 via-gray-600/60 to-gray-600/30"></div>
 
               {navItems.map((item) => (
                 <button
@@ -136,7 +136,11 @@ export default function Home() {
                   className="relative flex items-center gap-4 lg:gap-5 group cursor-pointer"
                 >
                   {/* Number Circle */}
-                  <div className="relative z-10 w-8 h-8 lg:w-9 lg:h-9 rounded-full border-2 flex items-center justify-center font-mono text-xs lg:text-sm tracking-widest transition-all duration-300 border-gray-600/80 bg-[#1D1B24] text-gray-500 group-hover:border-accent-gold group-hover:bg-accent-gold/20 group-hover:text-accent-gold group-hover:shadow-[0_0_16px_rgba(199,183,122,0.6)]">
+                  <div className="relative z-10 w-8 h-8 lg:w-9 lg:h-9 rounded-full border-2 flex items-center justify-center font-mono text-xs lg:text-sm tracking-widest transition-all duration-300 border-gray-600/80 bg-[#1D1B24] text-gray-500 group-hover:border-accent-gold group-hover:text-accent-gold group-hover:shadow-[0_0_16px_rgba(199,183,122,0.6)]">
+                    {/* Solid background to block the connecting line */}
+                    <div className="absolute inset-0 bg-[#1D1B24] rounded-full -z-10"></div>
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-accent-gold/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
                     {item.number}
                   </div>
 
@@ -144,9 +148,6 @@ export default function Home() {
                   <span className="text-sm lg:text-base font-medium tracking-wide transition-all duration-300 text-gray-500 group-hover:text-accent-gold">
                     {item.label}
                   </span>
-
-                  {/* Hover indicator glow */}
-                  <div className="absolute left-[14px] lg:left-[16px] top-1/2 -translate-y-1/2 w-[1px] h-8 bg-gradient-to-b from-transparent via-accent-gold to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
                 </button>
               ))}
             </div>
