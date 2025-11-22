@@ -1,0 +1,148 @@
+%-------------------------
+% Resume in Latex
+% Author : Dhruv Chaudhary (Core – Balanced Software & Hardware Focus, Impact-Driven Final)
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+\newcommand{\resumeItem}[1]{\item\small{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{\vspace{-2pt}\item
+  \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{\small#3} & \textit{\small #4} \\
+  \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeProjectHeading}[2]{\item
+  \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+    \small#1 & #2 \\
+  \end{tabular*}\vspace{-7pt}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
+%-------------------------------------------
+\begin{document}
+
+%-----------HEADER-----------
+\begin{center}
+    \textbf{\Huge \scshape Dhruv Chaudhary} \vspace{4pt} \\[-2pt] 
+    \footnotesize
+    425-591-6187 $|$
+    \href{mailto:dhruv.chaudhary@hotmail.com}{dhruv.chaudhary@hotmail.com} $|$
+    \href{https://linkedin.com/in/DhruvChaudhary1215}{linkedin.com/in/DhruvChaudhary1215} $|$
+    \href{https://github.com/Duhuhruv}{github.com/Duhuhruv} $|$
+    U.S. Citizen
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Purdue University}{West Lafayette, IN}
+      {Bachelor of Science in Computer Engineering}{Aug 2021 -- May 2025}
+  \begin{itemize}[leftmargin=0.05in, label={}]
+    \small{\item{
+     \textbf{Relevant Coursework:} Data Structures and Algorithms, Operating Systems, Communication Networks, AI/ML, Microprocessor Systems, C++ OOP, Python for Data Science, Digital Systems Design, Signals and Systems.\\
+    }}
+ \end{itemize}
+  \resumeSubHeadingListEnd
+
+%-----------EMPLOYMENT-----------
+\section{Employment}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {SeaTec Consulting}{Bellevue, WA}
+      {Aerospace and Defense Intern I \& II}{May 2022 -- Aug 2023}
+      \resumeItemListStart
+        \resumeItem{Saved over \textbf{10,000 labor hours across the program} by automating Boeing’s IP documentation review with a Python/VBA pipeline that processed 18K+ technical files, reducing the contract-allocated 6-hour review per document to under 1 minute.}
+        \resumeItem{Created automation scripts in Access and Excel to streamline configuration management workflows and error tracking for aircraft system documentation.}
+        \resumeItem{Streamlined airspace data-sharing documentation for NASA’s Urban Air Mobility Challenge by consolidating cross-team research and verification workflows.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------ENGINEERING EXPERIENCE-----------
+\section{Engineering Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Senior Design: Object Detection Drone}{West Lafayette, IN}
+      {Communications and Embedded Systems Lead}{Jan 2025 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Achieved stable 3 km Sub-GHz image transmission at 1 Mbps by designing a custom packet protocol and embedded C firmware on the TI CC1312R.}
+        \resumeItem{Integrated Python-based compression and reliability testing to improve throughput and minimize data loss.}
+        \resumeItem{Led communications development, coordinating RF integration and firmware across a four-person team.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Engineering Projects in Community Service (EPICS)}{West Lafayette, IN}
+      {Project Partner Liaison}{Aug 2021 -- May 2022}
+      \resumeItemListStart
+        \resumeItem{Translated client therapy goals into engineering deliverables by leading collaboration with a hippotherapy organization serving children with special needs.}
+        \resumeItem{Developed servo-controlled assistive robotics with embedded C and sensor-actuator interfacing, ensuring reliability.}
+        \resumeItem{Presented functional prototypes to 500+ attendees at Purdue Space Day, demonstrating real-time motion control.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{NPM Package Rater / NPM Clone} $|$ \emph{TypeScript, AWS Services, GitHub Actions}}{Aug 2024 -- Jan 2025}
+      \resumeItemListStart
+        \resumeItem{Migrated package evaluation logic to \textbf{AWS Lambda}, refactoring modules for execution with API Gateway, S3, and DynamoDB integration.}
+        \resumeItem{Implemented and maintained \textbf{CI/CD pipelines} using GitHub Actions to automate Lambda deployments and minimize manual configuration.}
+        \resumeItem{Developed structured logging with \textbf{Winston} and integrated \textbf{Jest} testing for functionality and accessibility validation.}
+        \resumeItem{Collaborated on modular system design linking AWS services, improving reliability and scalability of the package analysis prototype.}
+      \resumeItemListEnd
+    \resumeProjectHeading
+      {\textbf{Data-Regularized Q-Learning in Snake} $|$ \emph{PyTorch, Reinforcement Learning}}{Jan 2025 -- May 2025}
+      \resumeItemListStart
+        \resumeItem{Increased model stability and convergence speed by implementing and benchmarking multiple RL algorithms in a custom Snake environment.}
+        \resumeItem{Demonstrated 25\% faster learning and higher score stability with DrQ versus baselines, publishing results in an ICML-style paper and live demo.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages:} C, C++, Python, TypeScript, Java, MATLAB, RISC-V Assembly, LaTeX \\
+     \textbf{Software Engineering:} Distributed Systems, REST APIs, CI/CD, AWS, Testing (Jest), Logging (Winston) \\
+     \textbf{Tools:} Git, Node.js, Linux, VS Code, IntelliJ, RESTler, GDB, Valgrind, Agile Development \\
+     \textbf{AI/ML:} PyTorch, Model Training, Data Augmentation, Reinforcement Learning \\
+     \textbf{Awards:} Purdue Dean’s List (Dec 2021), Perfect Volunteer Attendance – Outdoors for All / Special Olympics (2020) \\
+    }}
+ \end{itemize}
+
+\end{document}

@@ -1,0 +1,702 @@
+% ==========================================================
+% DHRUV CHAUDHARY — ENGINEERING PORTFOLIO
+% Professional template for Overleaf
+% ==========================================================
+\documentclass[11pt]{article}
+
+% ---------- Core packages ----------
+\usepackage[letterpaper,margin=0.75in]{geometry}
+\usepackage{graphicx}
+\graphicspath{{img/}}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[most]{tcolorbox}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{wrapfig}
+
+% ---------- Colors (Professional Engineering Palette) ----------
+\definecolor{primarydark}{RGB}{13,27,42}      % Deep navy
+\definecolor{primarygold}{RGB}{191,140,0}     % Vibrant Purdue gold
+\definecolor{accentgold}{RGB}{207,185,145}    % Soft gold for accents
+\definecolor{secondarygray}{RGB}{60,64,67}    % Darker gray for contrast
+\definecolor{lightgray}{RGB}{248,249,250}     % Subtle background
+\definecolor{dividercolor}{RGB}{218,220,224}  % Clean dividers
+\definecolor{linkblue}{RGB}{26,115,232}       % Modern link blue
+\definecolor{successgreen}{RGB}{15,157,88}    % For highlights
+
+% ---------- Hyperref ----------
+\hypersetup{
+  colorlinks=true,
+  urlcolor=linkblue,
+  linkcolor=primarydark,
+  citecolor=primarydark,
+  pdfborder={0 0 0}
+}
+\urlstyle{same}
+
+% ---------- Global settings ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\emergencystretch=3em
+\setlist{nosep, leftmargin=1.2em}
+
+% ---------- Section formatting ----------
+\titleformat{\section}
+  {\Large\bfseries\color{primarydark}\sffamily}
+  {}{0pt}{}[\vspace{2pt}{\color{primarygold}\titlerule[2.5pt]}]
+\titlespacing*{\section}{0pt}{0pt}{6pt}
+
+\titleformat{\subsection}
+  {\large\bfseries\color{secondarygray}}
+  {}{0pt}{}
+\titlespacing*{\subsection}{0pt}{10pt}{6pt}
+
+% ---------- Custom commands ----------
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% green item that survives page breaks (text) — pair with green bullet label
+\newcommand{\gitem}{\item \leavevmode\color{successgreen}}
+
+\newcommand{\ImgCapCell}[2]{%
+  \begin{minipage}[t]{\linewidth}
+    \centering
+    \ProjectImage{#1}\\[4pt]
+    {\footnotesize\color{secondarygray}\textit{#2}}
+  \end{minipage}%
+}
+
+\newcommand{\divider}{%
+  \vspace{6pt}{\color{dividercolor}\hrule height 0.5pt}\vspace{6pt}%
+}
+
+\newcommand{\Tag}[1]{%
+  \tcbox[on line,
+         boxsep=2pt,
+         left=3pt,right=3pt,top=2pt,bottom=2pt,
+         boxrule=0pt,
+         colback=primarygold!15,
+         colframe=primarygold!15,
+         arc=3pt]{{\small\sffamily\bfseries\color{primarydark}#1}}%
+}
+
+\newcommand{\LinkTag}[2]{%
+  \href{#1}{\Tag{#2}}%
+}
+
+% Safe image placeholder
+\newcommand{\ProjectImage}[1]{%
+  \IfFileExists{img/#1}{%
+    \includegraphics[width=\linewidth,keepaspectratio]{img/#1}%
+  }{%
+    \fcolorbox{dividercolor}{lightgray}{%
+      \parbox[c][4cm]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+        \centering\small\color{secondarygray}%
+        Image: \texttt{#1}\\[4pt]
+        (place in \texttt{img/} folder)
+      }%
+    }%
+  }%
+}
+
+% Large image for additional projects (bigger placeholder)
+\newcommand{\ProjectImageLarge}[1]{%
+  \IfFileExists{img/#1}{%
+    \includegraphics[width=\linewidth,height=8cm,keepaspectratio]{img/#1}%
+  }{%
+    \fcolorbox{dividercolor}{lightgray}{%
+      \parbox[c][6cm]{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{%
+        \centering\small\color{secondarygray}%
+        Image: \texttt{#1}\\[4pt]
+        (place in \texttt{img/} folder)
+      }%
+    }%
+  }%
+}
+
+% Image with caption
+\newcommand{\CaptionedImage}[2]{%
+  \begin{center}
+    \ProjectImage{#1}\\[4pt]
+    {\small\color{secondarygray}\textit{#2}}
+  \end{center}
+}
+
+% Large image with caption for additional projects
+\newcommand{\CaptionedImageLarge}[2]{%
+  \begin{center}
+    \ProjectImageLarge{#1}\\[4pt]
+    {\small\color{secondarygray}\textit{#2}}
+  \end{center}
+}
+
+% Image grid for featured projects (3 images in a row)
+\newcommand{\ImageRowThree}[3]{%
+  \vspace{4pt}
+  \begin{tabularx}{\textwidth}{@{}XXX@{}}
+    \centering\ProjectImage{#1} & 
+    \centering\ProjectImage{#2} & 
+    \centering\ProjectImage{#3}
+  \end{tabularx}
+  \vspace{8pt}
+}
+
+% Image grid with captions (3 images in a row)
+\newcommand{\ImageRowThreeCaptioned}[6]{%
+  \vspace{4pt}
+  \begin{tabularx}{\textwidth}{@{}YYY@{}}
+    \ImgCapCell{#1}{#4} & \ImgCapCell{#2}{#5} & \ImgCapCell{#3}{#6}
+  \end{tabularx}
+  \vspace{8pt}
+}
+
+% Image grid (2 images in a row)
+\newcommand{\ImageRowTwo}[2]{%
+  \vspace{4pt}
+  \begin{tabularx}{\textwidth}{@{}XX@{}}
+    \centering\ProjectImage{#1} & 
+    \centering\ProjectImage{#2}
+  \end{tabularx}
+  \vspace{8pt}
+}
+
+% Image grid with captions (2 images in a row)
+\newcommand{\ImageRowTwoCaptioned}[4]{%
+  \vspace{4pt}
+  \begin{tabularx}{\textwidth}{@{}YY@{}}
+    \ImgCapCell{#1}{#3} & \ImgCapCell{#2}{#4}
+  \end{tabularx}
+  \vspace{8pt}
+}
+
+% Single large image
+\newcommand{\SingleImage}[1]{%
+  \vspace{4pt}
+  \begin{center}
+    \ProjectImage{#1}
+  \end{center}
+  \vspace{8pt}
+}
+
+% Single image with caption
+\newcommand{\SingleImageCaptioned}[2]{%
+  \vspace{4pt}
+  \CaptionedImage{#1}{#2}
+  \vspace{8pt}
+}
+
+% ---------- Header ----------
+\newcommand{\PortfolioHeader}[6]{%
+  \begin{center}
+    {\Huge\bfseries\color{primarydark} #1}\\[6pt]
+    {\large\color{secondarygray} #2}\\[10pt]
+    \begin{tabular}{c}
+      \color{secondarygray}
+      \texttt{#3} \quad $$ \quad #4 \quad $$ \quad U.S.\ Citizen \\[3pt]
+      \href{#5}{\color{linkblue}\textbf{GitHub}} \quad $\textbar$ \quad 
+      \href{#6}{\color{linkblue}\textbf{LinkedIn}}
+    \end{tabular}
+  \end{center}
+  \vspace{-6pt}
+  {\color{primarygold}\hrule height 2.5pt}
+  \vspace{12pt}
+}
+
+% ---------- Featured Project Environment (Full 1-2 pages) ----------
+\newenvironment{FeaturedProject}[6]{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=primarydark!3,
+    colframe=primarygold,
+    boxrule=2pt,
+    arc=4pt,
+    left=14pt,right=14pt,top=14pt,bottom=14pt,
+    shadow={3pt}{-3pt}{0pt}{black!8},
+    borderline west={4pt}{0pt}{primarygold},
+    breakable
+  ]
+    {\LARGE\bfseries\color{primarydark} #1}\\[4pt]
+    {\large\color{primarygold}\textbf{\textit{#2}}}\\[12pt]
+    
+    {\small\bfseries\color{secondarygray}TECH STACK:}\\
+    {\color{primarydark}#3}\\[8pt]
+    
+    {\small\bfseries\color{secondarygray}CHALLENGE:}\\
+    {\color{primarydark}#4}\\[8pt]
+    
+    {\small\bfseries\color{secondarygray}APPROACH:}\\
+    {\color{primarydark}#5}\\[8pt]
+    
+    {\small\bfseries\color{secondarygray}IMPACT:}\\[-2pt]
+    \begin{itemize}[leftmargin=*, itemsep=0pt, topsep=2pt, label=\textcolor{successgreen}{\textbullet}]
+    #6
+    \end{itemize}
+  \end{tcolorbox}
+  \vspace{10pt}
+}{%
+  \vspace{10pt}
+}
+
+% ---------- Project Card (Compact for Additional Projects) ----------
+% Standard version with single image
+\newcommand{\ProjectCard}[8]{%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=dividercolor,
+    boxrule=1pt,
+    arc=4pt,
+    left=12pt,right=12pt,top=12pt,bottom=12pt,
+    breakable,
+    shadow={2pt}{-2pt}{0pt}{black!5}
+  ]
+    % Title and context
+    {\Large\bfseries\color{primarydark} #1}\\[3pt]
+    {\footnotesize\color{primarygold}\textbf{\textit{#2}}}\\[10pt]
+    
+    % Technologies section
+    {\scriptsize\textbf{\color{secondarygray}TECHNOLOGIES}}\\[-2pt]
+    {\color{primarygold}\rule{0.8cm}{1.5pt}}\\[3pt]
+    {\small #3}\\[8pt]
+    
+    % Challenge section
+    {\scriptsize\textbf{\color{secondarygray}CHALLENGE}}\\[-2pt]
+    {\color{primarygold}\rule{0.7cm}{1.5pt}}\\[3pt]
+    {\small #4}\\[8pt]
+    
+    % Solution & Impact section
+    {\scriptsize\textbf{\color{secondarygray}SOLUTION \& IMPACT}}\\[-2pt]
+    {\color{primarygold}\rule{1.2cm}{1.5pt}}\\[3pt]
+    {\small #5}\\[10pt]
+    
+    % Links
+    #7\\[12pt]
+    
+    % Image separator line
+    {\color{dividercolor}\hrule height 0.5pt}\\[10pt]
+    
+    % Image (full width, large) with caption
+    \CaptionedImageLarge{#6}{#8}
+  \end{tcolorbox}
+  \vspace{10pt}
+}
+
+% Multi-image version for Additional Projects
+% (Links appear INSIDE the box, directly under the subheading)
+\newenvironment{ProjectCardMultiImage}[6]{%
+  \def\CardLinksTmp{#6}%
+  \begin{tcolorbox}[
+    enhanced,
+    colback=white,
+    colframe=dividercolor,
+    boxrule=1pt,
+    arc=4pt,
+    left=12pt,right=12pt,top=12pt,bottom=12pt,
+    breakable,
+    shadow={2pt}{-2pt}{0pt}{black!5}
+  ]
+    % Title and context
+    {\Large\bfseries\color{primarydark} #1}\\[3pt]
+    {\footnotesize\color{primarygold}\textbf{\textit{#2}}}\\[6pt]
+    \noindent\CardLinksTmp\\[10pt]
+    
+    % Technologies section
+    {\scriptsize\textbf{\color{secondarygray}TECHNOLOGIES}}\\[-2pt]
+    {\color{primarygold}\rule{0.8cm}{1.5pt}}\\[3pt]
+    {\small #3}\\[8pt]
+    
+    % Challenge section
+    {\scriptsize\textbf{\color{secondarygray}CHALLENGE}}\\[-2pt]
+    {\color{primarygold}\rule{0.7cm}{1.5pt}}\\[3pt]
+    {\small #4}\\[8pt]
+    
+    % Solution & Impact section
+    {\scriptsize\textbf{\color{secondarygray}SOLUTION \& IMPACT}}\\[-2pt]
+    {\color{primarygold}\rule{1.2cm}{1.5pt}}\\[3pt]
+    {\small #5}\\[10pt]
+    
+    % Content area for multiple images (user adds them)
+}{%
+  \end{tcolorbox}
+  \vspace{10pt}
+}
+
+% ---------- Skills Section ----------
+\newcommand{\SkillCategory}[2]{%
+  \textbf{\color{primarydark}#1} \quad {\small\color{secondarygray}#2}
+}
+
+% ==========================================================
+% DOCUMENT CONTENT
+% ==========================================================
+\begin{document}
+
+\PortfolioHeader
+  {Dhruv Chaudhary}
+  {Software-Focused Computer Engineer — Embedded Systems, RF \& Cloud}
+  {dhruv.chaudhary@hotmail.com}
+  {425-591-6187}
+  {https://github.com/Duhuhruv}
+  {https://linkedin.com/in/DhruvChaudhary1215}
+
+\vspace{-8pt}
+
+% ---- About Section ----
+\section*{About}
+Recent Purdue Computer Engineering graduate with a proven track record in both software and hardware domains. Experienced in developing end-to-end systems—from sub-GHz RF communication and embedded firmware to serverless cloud architectures and AI/ML pipelines. Seeking opportunities in software engineering, embedded systems, firmware development, RF engineering, or aerospace roles where I can apply my interdisciplinary skillset to solve complex technical challenges.
+
+\textbf{Technical Strengths:} Full-stack development, distributed systems, embedded C/C++ programming, wireless protocols, cloud infrastructure (AWS), reinforcement learning, and cross-functional collaboration.
+
+% ============================================================
+% FEATURED PROJECT 1: DRONE TELEMETRY (1-2 PAGES)
+% ============================================================
+\section*{Featured Projects}
+
+\begin{FeaturedProject}
+  {Sub-GHz RF Telemetry System for Search \& Rescue Drone}
+  {Senior Design Project — Communications Subteam Lead}
+  {C, Python, TI CC1312R SimpleLink, UART, Custom Protocol Design, JPEG Compression, Luckfox Pico Ultra}
+  {Design and implement a robust, long-range wireless communication system capable of transmitting real-time compressed images and alert data from an autonomous search-and-rescue drone with onboard object detection to a ground station over distances exceeding 3 km.}
+  {Led the communications subsystem design and implementation for a senior design drone project. Architected a custom packet transmission protocol optimized for Sub-GHz operation (868 MHz, 2-FSK modulation) achieving 1 Mbps sustained data rates. Developed embedded C firmware for the TI CC1312R radio module with UART interfacing to the flight controller. Implemented Python-based ground station software for JPEG decompression, packet reassembly, and real-time image display. Designed custom framing with CRC error detection and basic ARQ for reliability. Conducted extensive field testing to validate range and throughput performance.}
+  {%
+    \gitem 3+ km operational range validated in line-of-sight field tests
+    \gitem 1 Mbps sustained data rate for image transmission
+    \gitem Custom packet protocol with CRC/ARQ for reliability
+    \gitem Successfully integrated with YOLOv5 object detection pipeline
+  }
+  
+  \vspace{6pt}
+  \LinkTag{https://github.com/Duhuhruv/Sub-GHz_Radio_Drone_Project}{GitHub Repository}
+  \LinkTag{https://drive.google.com/file/d/1hLyYco8pAcUMKnUi00cZ6kdRbGmCKY5S/view?usp=sharing}{Design Document}
+\end{FeaturedProject}
+
+\subsection*{System Architecture \& Implementation}
+
+The communications subsystem served as the critical link between the autonomous drone and ground station, enabling real-time transmission of both object detection alerts and compressed video streams. The system architecture consisted of three primary components:
+
+\textbf{1. Embedded Transmitter (Drone-Side):}
+\begin{itemize}
+  \item TI CC1312R SimpleLink wireless MCU configured for 868 MHz Sub-GHz operation
+  \item Custom C firmware implementing packet framing, CRC calculation, and UART buffering
+  \item Integration with Luckfox Pico Ultra for JPEG compression and frame capture
+  \item Real-time prioritization: alert packets transmitted with higher priority than image data
+\end{itemize}
+
+\textbf{2. Custom RF Protocol:}
+\begin{itemize}
+  \item Packet structure: Header (16 bytes) + Payload (variable) + CRC16
+  \item Support for both alert messages (low-latency, <50ms) and image chunks (throughput-optimized)
+  \item Basic ARQ implementation with selective retransmission for corrupted packets
+  \item Achieved 99.2\% packet delivery rate in field conditions
+\end{itemize}
+
+\textbf{3. Ground Station Software (Python):}
+\begin{itemize}
+  \item Real-time packet reception and reassembly
+  \item JPEG decompression and image display pipeline
+  \item Logging and diagnostics for performance analysis
+\end{itemize}
+
+% Image placeholders - replace with your actual images
+% Example with captions:
+\CaptionedImage{subsystem_block_radio.jpg}{Radio Subsystem block diagram}
+\CaptionedImage{ui.png}{Real time Image transfer and UI example from Purdue SPARK Demo}
+
+% Or without captions:
+% \ImageRowThree{drone_system_diagram.jpg}{cc1312r_hardware.jpg}{field_test_setup.jpg}
+
+\subsection*{Technical Challenges \& Solutions}
+
+\textbf{Challenge 1: Balancing Latency vs. Throughput}
+
+Object detection alerts required low-latency transmission (<100ms), while image data needed high throughput (1 Mbps). Solved by implementing a dual-queue system with priority scheduling in the firmware.
+
+\textbf{Challenge 2: Packet Loss in Long-Range Scenarios}
+
+Initial testing at 2+ km showed 15-20\% packet loss due to signal fading. Implemented forward error correction and adaptive retry logic, reducing effective loss to <1\%.
+
+\textbf{Challenge 3: Power Constraints}
+
+CC1312R power consumption at 10 dBm output threatened flight time. Optimized transmission duty cycle and implemented dynamic power scaling based on RSSI feedback from ground station.
+
+% More images
+% With captions:
+\ImageRowTwoCaptioned{radio_latency.png}{radio_completed_transfer.png}{Radio latency measurements}{UART logs showing transfer connection}
+
+% Or without captions:
+% \ImageRowTwo{rf_performance_graph.jpg}{packet_structure_diagram.jpg}
+
+\subsection*{Testing \& Validation}
+
+Conducted comprehensive field testing across multiple environments:
+\begin{itemize}
+  \item \textbf{Open Field Tests:} Validated 3.2 km maximum range with line-of-sight
+  \item \textbf{Urban Environment:} Achieved 1.1 km range with building obstructions
+  \item \textbf{Interference Testing:} Verified operation in 2.4 GHz WiFi saturated areas
+  \item \textbf{Reliability Metrics:} 99.2\% packet delivery, <80ms average latency for alerts
+\end{itemize}
+
+% With caption:
+\SingleImageCaptioned{distance_test.png}{Field testing demonstrating 3+ km operational range. X marks the ground station location while the circles are the drone-side locations. }
+
+% Or without caption:
+% \SingleImage{drone_field_testing.jpg}
+
+\subsection*{Key Takeaways \& Future Work}
+
+This project demonstrated the viability of Sub-GHz communication for drone telemetry applications, particularly in scenarios requiring long range and obstacle penetration. Future enhancements could include adaptive modulation schemes (2-FSK to 4-FSK based on link quality) and integration of mesh networking for multi-drone coordination.
+
+The system was successfully demonstrated at the senior design showcase, receiving positive feedback from industry judges for its practical approach to solving real-world search-and-rescue communication challenges.
+
+% ============================================================
+% FEATURED PROJECT 2: NPM CLONE (1-2 PAGES)
+% ============================================================
+\newpage
+\begin{FeaturedProject}
+  {NPM Package Registry Clone — Private Enterprise Software Distribution}
+  {ECE 461: Software Engineering — Full-Stack \& Cloud Architecture Lead}
+  {TypeScript, Node.js, AWS Lambda, AWS S3, DynamoDB, API Gateway, GitHub Actions, Jest, Winston}
+  {Build a scalable, secure, private package management system for enterprise use that evaluates and stores software packages with automated quality metrics, access controls, and a web-based interface—essentially creating a private alternative to the public npm registry.}
+  {Designed and implemented a serverless architecture on AWS with 8 RESTful API endpoints supporting full CRUD operations for package management. Developed Lambda functions in TypeScript for package ingestion (with automated quality scoring using 7 custom metrics), upload/download via presigned S3 URLs, regex-based search, and cost calculation. Implemented comprehensive CI/CD pipeline using GitHub Actions for automated testing (Jest), security scanning (RESTler), and deployment. Built responsive web frontend with S3 static hosting and integrated ADA-compliant UI (WCAG 2.1 AA).}
+  {%
+    \gitem 8 REST endpoints with complete package lifecycle management
+    \gitem Automated quality scoring across 7 metrics (ramp-up, responsiveness, bus factor, etc.)
+    \gitem Serverless architecture scaling within AWS free tier
+    \gitem Presigned-URL security for time-limited S3 access
+  }
+  
+  \vspace{6pt}
+  \LinkTag{https://github.com/AviatorNic28/ECE-461-Phase-2}{GitHub Repository}
+  \LinkTag{https://drive.google.com/file/d/1-CU-heo0OBlgMCqzhl4IIAyjx4r8V4bZ/view?usp=sharing}{Final Report}
+\end{FeaturedProject}
+
+\subsection*{System Architecture}
+
+The system was architected as a fully serverless application leveraging AWS managed services to minimize operational overhead while maintaining scalability and security.
+
+\textbf{Core Components:}
+\begin{itemize}
+  \item \textbf{API Gateway:} RESTful endpoint routing with CORS configuration
+  \item \textbf{AWS Lambda:} 12+ serverless functions handling business logic (TypeScript/Node.js)
+  \item \textbf{S3 Buckets:} Package storage with presigned URL access control
+  \item \textbf{DynamoDB:} Two tables for package metadata and quality metrics
+  \item \textbf{CloudWatch:} Centralized logging and monitoring
+\end{itemize}
+
+% Architecture diagram
+% With caption:
+\SingleImageCaptioned{AWS_structure.png}{Serverless AWS architecture with Lambda, S3, DynamoDB, and API Gateway}
+
+% Or without caption:
+% \SingleImage{npm_architecture_diagram.jpg}
+
+\subsection*{Key Features \& Implementation Details}
+
+\textbf{1. Package Upload with Security}
+
+Implemented a two-stage upload process using presigned S3 URLs:
+\begin{enumerate}
+  \item Client requests upload → Lambda generates 10-minute presigned URL
+  \item Client uploads directly to S3 → S3 trigger invokes metadata processor
+  \item Metadata processor updates DynamoDB with package info
+\end{enumerate}
+
+This approach avoided Lambda payload size limits (6 MB) and improved security by limiting S3 access windows.
+
+\textbf{2. Automated Package Quality Scoring}
+
+Developed a rating system evaluating packages across 7 dimensions:
+\begin{itemize}
+  \item Ramp-up time (README quality, documentation)
+  \item Responsiveness (issue/PR response times via GitHub API)
+  \item Correctness (test coverage, build status)
+  \item Bus factor (contributor distribution)
+  \item License compliance (SPDX validation)
+  \item Dependency pinning (security best practices)
+  \item Code review fraction (PR approval rates)
+\end{itemize}
+
+Packages below 0.5 average score were automatically rejected during ingestion.
+
+\textbf{3. Search \& Discovery}
+
+Implemented regex-based search across package names and descriptions using DynamoDB Query with scan fallback for complex patterns.
+
+% Screenshots
+% With captions:
+\SingleImageCaptioned{npm_frontend.png}{Website frontend}
+
+% Or without captions:
+% \ImageRowTwo{npm_frontend_ui.jpg}{npm_metrics_display.jpg}
+
+\subsection*{Development Process \& Challenges}
+
+\textbf{CI/CD Pipeline:}
+
+Established GitHub Actions workflow automating:
+\begin{itemize}
+  \item Jest unit tests (targeting 80\%+ coverage)
+  \item TypeScript compilation and linting
+  \item Automated deployment to AWS (Lambda, S3, DynamoDB)
+  \item RESTler security testing against OpenAPI spec
+\end{itemize}
+
+\textbf{Major Technical Challenge: Integration Issues}
+
+Mid-project, switched from AWS Amplify to manual GitHub Actions deployment due to HTTPS/HTTP conflicts breaking frontend-backend communication. This required re-architecting the deployment pipeline but ultimately provided better control and reliability.
+
+\textbf{Team Collaboration:}
+
+Worked in a 4-person team using Agile methodology:
+\begin{itemize}
+  \item Weekly sprints with Discord standups
+  \item Git feature branching with PR reviews
+  \item Shared AWS account with IAM role separation
+  \item Documentation in GitHub Wiki
+\end{itemize}
+
+\subsection*{Security Analysis (STRIDE Model)}
+
+Conducted comprehensive threat modeling:
+\begin{itemize}
+  \item \textbf{Spoofing:} Mitigated with API key authentication (planned X-Authorization tokens)
+  \item \textbf{Tampering:} HTTPS for all communication, presigned URLs for S3
+  \item \textbf{Repudiation:} CloudWatch logging for audit trails
+  \item \textbf{Information Disclosure:} IAM policies restricting DynamoDB access
+  \item \textbf{DoS:} API Gateway rate limiting (not fully implemented)
+  \item \textbf{Elevation of Privilege:} AWS IAM with principle of least privilege
+\end{itemize}
+
+% Testing results
+% With captions:
+\SingleImageCaptioned{cicd_deployment.png}{GitHub Actions CI/CD pipeline execution}
+
+\CaptionedImageLarge{Accesibility_check.png}{WGAC Accessibility Test}
+
+% Or without captions:
+% \ImageRowTwo{npm_restler_results.jpg}{npm_cicd_pipeline.jpg}
+
+\subsection*{Outcomes \& Lessons Learned}
+
+Successfully delivered a functional package registry demonstrating:
+\begin{itemize}
+  \item Serverless architecture design and implementation
+  \item RESTful API development with proper HTTP semantics
+  \item Cloud infrastructure management (IaC principles)
+  \item Security-first design with threat modeling
+  \item Team collaboration in a complex software engineering project
+\end{itemize}
+
+\textbf{Key Lesson:} Integration testing should be prioritized earlier in development. We spent significant time on individual Lambda function testing but encountered issues when connecting components. Implementing end-to-end integration tests from week 1 would have surfaced these problems sooner.
+
+The project provided hands-on experience with modern software engineering practices used in production systems—skills directly applicable to industry roles in cloud development and distributed systems.
+
+% ============================================================
+% ADDITIONAL PROJECTS (COMPACT CARDS)
+% ============================================================
+\section*{Additional Projects}
+
+\begin{ProjectCardMultiImage}
+  {Data-Regularized Q-Learning for Snake}
+  {ECE 570 — Reinforcement Learning Research}
+  {Python, PyTorch, OpenAI Gym, Reinforcement Learning, Computer Vision}
+  {Evaluate whether data augmentation techniques (DrQ) improve training efficiency and stability in discrete-action, pixel-based RL environments.}
+  {Implemented DrQ framework with random shift augmentation, double Q-learning, and custom Snake environment (84×84 pixel observations). Trained convolutional Q-networks with augmented replay buffers. Authored ICML-style research paper comparing DrQ against baseline DQN across harsh and forgiving reward conditions. Demonstrated 30\% faster convergence and reduced overfitting in long training runs (500k+ steps).}
+  {\LinkTag{https://github.com/Duhuhruv/ECE570-DrQSnake}{GitHub}
+  \LinkTag{https://drive.google.com/file/d/1VV7r5jJUt6nuBxgADgMndOKDJUNj06Iz/view?usp=sharing}{Paper}
+  \LinkTag{https://www.youtube.com/watch?v=Rc4yFxNeazg}{Video}}
+  
+  \ImageRowTwoCaptioned{DrQRSFull1.png}{DQNRSFull1.png}{DrQ in a forgiving environment}{DQN (Baseline) in a forgiving environment}
+  
+\end{ProjectCardMultiImage}
+
+\begin{ProjectCardMultiImage}
+  {EPICS: Rovers for Aero \& Astro Education Team / Hippotherapy for Assistive Technology Team}
+  {Purdue EPICS — Project Liaison \& Embedded Systems Lead}
+  {C/C++, Arduino/STM32, Servo Control, Sensor Integration, Community Partnership}
+  {Develop accessible, field-tested assistive robotics for hippotherapy (equine-assisted therapy) serving children with special needs through a year-long community partnership.
+  
+  Delivered servo-controlled Rover prototypes at Purdue Space Day for 500+ participants, demonstrating stable closed-loop operation and modular hardware design.}
+  {Served as primary technical liaison between Purdue engineering team and community therapy organization, translating therapeutic requirements into engineering specifications. Led embedded systems development with servo-controlled modules, real-time sensor integration, and fail-safe control logic. Presented Rover prototypes at Purdue Space Day to 500+ attendees, demonstrating electromagnetics and remote controls through a large educational activity.}
+  {\LinkTag{https://engineering.purdue.edu/EPICS}{EPICS Program}}
+  
+  \ImageRowTwoCaptioned{rover.png}{space_day.png}{Rover and Controller}{Rover demonstration at Purdue Space Day with 500+ attendee}
+\end{ProjectCardMultiImage}
+
+% ============================================================
+% PROFESSIONAL EXPERIENCE
+% ============================================================
+\newpage
+\section*{Professional Experience}
+
+\textbf{Aerospace \& Defense Intern I/II} \hfill \textit{SeaTec Consulting, Bellevue, WA}\\
+\textit{May 2022 – Aug 2023}
+\begin{itemize}
+  \item Automated a Boeing IP documentation program by developing a Python and VBA pipeline to process 18K+ technical files, cutting the contract-allocated 6-hour review time per document to under 1 minute and saving over \textbf{10,000 labor hours} across the scope.
+  \item Created automation scripts in Access and Excel to streamline configuration management workflows and error tracking for aircraft system documentation.
+  \item Streamlined airspace data-sharing documentation for NASA’s Urban Air Mobility Challenge by consolidating cross-team research and verification workflows.
+\end{itemize}
+
+% ============================================================
+% SKILLS
+% ============================================================
+\section*{Technical Skills}
+
+\begin{multicols}{2}
+\SkillCategory{Languages}{C, C++, Python, TypeScript, Java, MATLAB, RISC-V Assembly}
+
+\SkillCategory{Embedded \& Hardware}{TI CC1312R (SimpleLink), STM32, Arduino, UART/SPI/I2C, FreeRTOS}
+
+\SkillCategory{RF \& Wireless}{Sub-GHz Protocols, 2-FSK/4-FSK Modulation, Link Budget Analysis}
+
+\SkillCategory{Software Engineering}{REST APIs, Serverless Architecture, Distributed Systems, CI/CD}
+
+\SkillCategory{Cloud \& DevOps}{AWS (Lambda, S3, DynamoDB, EC2, API Gateway), GitHub Actions}
+
+\SkillCategory{AI/ML}{PyTorch, Reinforcement Learning, CNNs, Data Augmentation, Model Training}
+
+\SkillCategory{Testing \& Tools}{Jest, RESTler, Git, Linux, GDB, Valgrind, Winston Logging}
+
+\SkillCategory{Development Methods}{Agile/Scrum, Code Review, Technical Documentation, TDD}
+\end{multicols}
+
+% ============================================================
+% EDUCATION
+% ============================================================
+\section*{Education}
+
+\textbf{Purdue University} \hfill \textit{West Lafayette, IN}\\
+Bachelor of Science in Computer Engineering \hfill \textit{Aug 2021 – May 2025}
+
+\textbf{Relevant Coursework:}
+Data Structures \& Algorithms, Operating Systems, Computer Networks, Embedded Systems Design, AI/Machine Learning, Digital Systems Design, Object-Oriented Programming (C++), Python for Data Science, Signals \& Systems, Probabilistic Methods
+
+\textbf{Honors \& Activities:}
+\begin{itemize}
+  \item Dean's List (Dec 2021)
+  \item Perfect Volunteer Attendance – Outdoors for All / Special Olympics (2020)
+  \item Engineering Projects in Community Service (EPICS) — 2 semesters
+\end{itemize}
+
+% ============================================================
+% FOOTER
+% ============================================================
+\vspace{12pt}
+\divider
+\begin{center}
+  {\small\color{secondarygray}
+    This portfolio showcases selected projects demonstrating capabilities across software engineering,\\
+    embedded systems, RF communication, cloud infrastructure, and AI/ML.\\[3pt]
+    Full project archive and source code: \href{https://github.com/Duhuhruv}{\color{linkblue}\textbf{github.com/Duhuhruv}}\\[3pt]
+    \textit{Portfolio compiled: \today}
+  }
+\end{center}
+
+\end{document}

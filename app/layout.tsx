@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import GlowBackground from "@/components/GlowBackground";
+import { about } from "@/data/about";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Welcome to my portfolio website showcasing my projects and skills",
+  title: `${about.name} - Portfolio`,
+  description: about.title,
 };
 
 export default function RootLayout({
@@ -15,10 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+      <body className="min-h-screen flex flex-col bg-bg-primary text-text-primary">
+        <GlowBackground>
+          <Navbar />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </GlowBackground>
       </body>
     </html>
   );
